@@ -82,6 +82,7 @@
     <Compile Include="ConfigHelper\ServersCollection.cs" />
     <Compile Include="ConfigHelper\ServersConfigSection.cs" />
     <Compile Include="Data\DataAcces.cs" />
+    <Compile Include="Data\DbInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
