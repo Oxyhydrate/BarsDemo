@@ -17,7 +17,7 @@ namespace BarsDemo.Data
             _connStr = connStr;
         }
 
-        public List<DbInfo> GetDbSize() // возвращаем список DB на сервере с информацией об их размере
+        public async Task<List<DbInfo>> GetDbSize() // возвращаем список DB на сервере с информацией об их размере
         {
 
             try
@@ -25,7 +25,7 @@ namespace BarsDemo.Data
                 using (var conn = new NpgsqlConnection(_connStr))
                 {
                     conn.Open();
-                    Thread.Sleep(3000); // тестовые серверы были развернуты на локальной машине в виртуалке, без задержки вылетал exception из за timeout
+                    await Task.Delay(3000); // тестовые серверы были развернуты на локальной машине в виртуалке, без задержки вылетал exception из за timeout
                     var result = conn.Query<DbInfo>($"SELECT pg_database.datname as \"DatabaseName\", pg_database_size(pg_database.datname) as \"DBSize\" FROM pg_database ORDER by pg_database_size(pg_database.datname) DESC;");
                     return result.ToList();
                 }
